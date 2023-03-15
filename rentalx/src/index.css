@@ -1,0 +1,17 @@
+*{
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+ font-family: 'Roboto Slab', serif;
+ color: #303841;
+ background-color: #EEEEEE;
+}
+body{
+  margin-left: 3rem;
+  margin-right: 3rem;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
