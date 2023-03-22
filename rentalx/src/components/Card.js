@@ -3,10 +3,15 @@ import 'styled-components';
 import styled from 'styled-components';
 import img from '../assests/img.jpg'
 import ReactStars from 'react-stars'
-const Card=()=> {
+const Card=({setIsOpen})=> {
+console.log(setIsOpen)
   const price = 100000;
   const year = 2008;
   const carName = "Ferrari Enzo";
+  const handleOpenModal = () => {
+    setIsOpen(true);
+  };
+
   return (
     <Main>
         <img src = {img} alt="" />
@@ -14,8 +19,9 @@ const Card=()=> {
           <span className="price">Rs {price} <span className="days">/Days</span></span>
           <span className="price">{carName} <span className="days">{year}</span></span>
           <ReactStars className='stars' size={30} edit={false} value={3} ></ReactStars>
-          <button>View more</button>
+          <button onClick={handleOpenModal}>View more</button>
         </div>
+
     </Main>
   )
 }
