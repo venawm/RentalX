@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import NavBar from '../components/NavBar';
 import Card from '../components/Card';
+import {RxCrossCircled} from 'react-icons/rx'
 
 const CarsList = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,7 +24,7 @@ const CarsList = () => {
         <>
           <Backdrop />
           <Model>
-            
+              <RxCrossCircled className='button' onClick={handleCloseModal}/>
           </Model>
         </>
       )}
@@ -75,10 +76,10 @@ const Model = styled.div`
   border-radius: 20px;
   z-index: 2;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  padding: 1.5rem;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  
+
 
   p {
     font-size: 2rem;
@@ -86,7 +87,14 @@ const Model = styled.div`
     margin-bottom: 2rem;
   }
 
-  button {
+  .button{
+    margin-left: 62vw;
+    :hover{
+      
+    }
+  }
+
+  /* button {
     font-size: 1.5rem;
     font-weight: 700;
     padding: 1rem 2rem;
@@ -100,7 +108,8 @@ const Model = styled.div`
     &:hover {
       background-color: #ff8a65;
     }
-  }
+  } */
+
 `;
 
 export default CarsList;
