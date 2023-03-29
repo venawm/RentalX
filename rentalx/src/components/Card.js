@@ -28,7 +28,7 @@ console.log(setIsOpen)
 const Main = styled.div`
   margin: 0 0.5rem 0 0.5rem;
   margin-top: 2rem;
-  padding: 0.3rem;
+    padding: 0;
   background-color: #F5F5F5;
   width: 18vw;
   height: 52vh;
@@ -42,7 +42,7 @@ const Main = styled.div`
     width: 100%;
     height: 30vh;
     object-fit: cover;
-    
+    border-radius: 15px;
   }
   .text{
     display: flex;

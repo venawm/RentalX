@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
+import { useTransition, animated, config } from 'react-spring';
 import NavBar from '../components/NavBar';
 import Card from '../components/Card';
-import {RxCrossCircled} from 'react-icons/rx'
+import { RxCrossCircled } from 'react-icons/rx';
 
 const CarsList = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,6 +11,13 @@ const CarsList = () => {
   const handleCloseModal = () => {
     setIsOpen(false);
   };
+
+  const modalTransition = useTransition(isOpen, {
+    from: { opacity: 0, transform: 'translate(-50%, -60%) scale(0.8)' },
+    enter: { opacity: 1, transform: 'translate(-50%, -50%) scale(1)' },
+    leave: { opacity: 0, transform: 'translate(-50%, -60%) scale(0.8)' },
+    config: config.stiff,
+  });
 
   return (
     <Container>
@@ -20,13 +28,15 @@ const CarsList = () => {
           <Card setIsOpen={setIsOpen} />
         </div>
       </Main>
-      {isOpen && (
-        <>
-          <Backdrop />
-          <Model>
-              <RxCrossCircled className='button' onClick={handleCloseModal}/>
-          </Model>
-        </>
+      {modalTransition((style, item) =>
+        item ? (
+          <ModalBackdrop onClick={handleCloseModal}>
+            <Modal style={style}>
+              <RxCrossCircled className="button" onClick={handleCloseModal} />
+              <p>Modal Content Here</p>
+            </Modal>
+          </ModalBackdrop>
+        ) : null
       )}
     </Container>
   );
@@ -36,7 +46,7 @@ const Container = styled.div`
   position: relative;
 `;
 
-const Backdrop = styled.div`
+const ModalBackdrop = styled.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -65,9 +75,9 @@ const Main = styled.div`
   }
 `;
 
-const Model = styled.div`
+const Modal = styled(animated.div)`
   position: absolute;
-  top: 65%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 65vw;
@@ -78,8 +88,9 @@ const Model = styled.div`
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   padding: 1.5rem;
   display: flex;
-  
-
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   p {
     font-size: 2rem;
@@ -87,29 +98,14 @@ const Model = styled.div`
     margin-bottom: 2rem;
   }
 
-  .button{
-    margin-left: 62vw;
-    :hover{
-      
-    }
-  }
-
-  /* button {
-    font-size: 1.5rem;
-    font-weight: 700;
-    padding: 1rem 2rem;
-    background-color: #ff5722;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
+  .button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2rem;
+    color: #ff5722;
     cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
-
-    &:hover {
-      background-color: #ff8a65;
-    }
-  } */
-
+  }
 `;
 
 export default CarsList;
