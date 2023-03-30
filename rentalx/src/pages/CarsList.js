@@ -7,7 +7,8 @@ import { RxCrossCircled } from 'react-icons/rx';
 import img from '../assests/ferrari.png'
 const CarsList = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const carsData = [
+  const [modalData, setModalData] = useState({});
+  const carsDatas = [
     {
       "price": 100000,
       "year": 2008,
@@ -189,8 +190,8 @@ const CarsList = () => {
         <p className="heading">Our Vehicle Collections</p>
         <div class="searchbar"></div>
         <div className="cards">
-          {carsData.map((carData)=>{
-              return <Card price={carData.price} year={carData.year} carName={carData.carName} setIsOpen={setIsOpen} />
+          {carsDatas.map((carData)=>{
+              return <Card carData={carData} setModalData={setModalData} setIsOpen={setIsOpen} />
           })}
           
         </div>
@@ -201,7 +202,7 @@ const CarsList = () => {
             <Modal style={style}>
               <RxCrossCircled className="button" onClick={handleCloseModal} />
               <div class="modalContent">
-                <h1>Enzo</h1>
+                <h1>{modalData.carName}</h1>
                 <img src={img} alt=""></img>
               </div>
               <div class="details"></div>

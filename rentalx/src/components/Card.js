@@ -2,9 +2,10 @@ import React from 'react'
 import 'styled-components';
 import styled from 'styled-components';
 import img from '../assests/img.jpg'
-// import ReactStars from 'react-stars'
-const Card=({setIsOpen,year,price,carName})=> {
+import ReactStars from 'react-stars'
+const Card=({setIsOpen,carData,setModalData})=> {
   const handleOpenModal = () => {
+    setModalData(carData)
     setIsOpen(true);
   };
 
@@ -12,9 +13,8 @@ const Card=({setIsOpen,year,price,carName})=> {
     <Main>
         <img src = {img} alt="" />
         <div className="text">
-          <span className="price">{carName} <span className="days">{year}</span></span>
-          <span className="price">Rs {price} <span className="days">/Days</span></span>
-          
+          <span className="price">{carData.carName} <span className="days">{carData.year}</span></span>
+          <span className="price">Rs {carData.price} <span className="days">/Days</span></span>
           {/* <ReactStars className='stars' size={30} edit={false} value={3} ></ReactStars> */}
           <button onClick={handleOpenModal}>View Details</button>
         </div>
@@ -63,12 +63,12 @@ margin: 0px 15px 0px 15px;
     button{
       border: none;
     background-color: #FF5722;
-    height: 70px;
+    height: 65px;
     width: 100%;
     font-size: x-large;
     font-weight: 700;
     color: #EEEEEE;
-    margin-top: 35px;
+    margin-top: 50px;
     border-radius: 15px;
     /* border-radius: 0px 0px 5px 5px; */
     border-radius: 15px;
