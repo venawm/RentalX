@@ -15,7 +15,7 @@ const Card=({setIsOpen,carData,setModalData})=> {
         <div className="text">
           <span className="price">{carData.carName} <span className="days">{carData.year}</span></span>
           <span className="price">Rs {carData.price} <span className="days">/Days</span></span>
-          {/* <ReactStars className='stars' size={30} edit={false} value={3} ></ReactStars> */}
+          <ReactStars className='stars' size={30} edit={false} value={3} ></ReactStars>
           <button onClick={handleOpenModal}>View Details</button>
         </div>
 
@@ -40,6 +40,9 @@ margin: 0px 15px 0px 15px;
     height: 30vh;
     object-fit: cover;
     border-radius: 15px 15px 0px 0px;
+  }
+  .stars{
+    background-color: #F5F5F5;
   }
   .text{
     border-radius: 0px 0px 15px 15px;
@@ -68,7 +71,7 @@ margin: 0px 15px 0px 15px;
     font-size: x-large;
     font-weight: 700;
     color: #EEEEEE;
-    margin-top: 50px;
+    margin-top: 25px;
     border-radius: 15px;
     /* border-radius: 0px 0px 5px 5px; */
     border-radius: 15px;

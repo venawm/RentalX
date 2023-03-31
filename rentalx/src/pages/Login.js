@@ -20,6 +20,7 @@ const Login=()=> {
       <div className="logins">
         <button className='button'>Login</button>
         <a href="/#">Forgot Password</a>
+        <a href="/#">Admin ?</a>
       </div>
     </Main>
   )
@@ -79,6 +80,7 @@ justify-content: center;
     }
     a{
         text-decoration: none;
+        margin-top:10px;
         :hover{
           color: #FF5722;
         }

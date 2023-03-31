@@ -17,7 +17,7 @@ const LoginPage=()=> {
       <div className="secondary">
         <div className="buttons">
           <button onClick={()=>{setLogin(true)}}>Login</button>
-          <button onClick={()=>{setLogin(false)}}>SignUp</button>
+          <button onClick={()=>{setLogin(false)}}>Sign Up</button>
         </div>
         <div className="component">
           {login && <Login/>}
@@ -44,7 +44,7 @@ const Logins = styled.div`
         position: absolute;
         top: 5rem;
         right: -14vw;
-            
+
       }
       h1{
         background-color:#FF5722;
