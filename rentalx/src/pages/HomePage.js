@@ -3,6 +3,7 @@ import 'styled-components';
 import styled from 'styled-components';
 import Car from '../assests/car.png'
 import NavBar from '../components/NavBar';
+import Search from '../components/SearchBox';
 const HomePage=()=> {
   return (
     <div className="home">
@@ -16,8 +17,10 @@ const HomePage=()=> {
                 Rent a car with us and explore your destination hassle-free. Our fleet includes a variety of vehicles at competitive rates, and our experienced team is dedicated to providing excellent customer service. Book now and enjoy your journey with ease.
                 </p>
                 <div className="buttons">
-                    <button>Search</button>
                     <a href="/carslist">See all cars</a>
+                    <div class="search">
+                        <Search/>
+                    </div>
                 </div>
             </div>
             <div className="secondary">
@@ -42,24 +45,15 @@ const Main = styled.div`
        }
        .buttons{
         margin-top: 10vw;
-            button{
-            border: none;
-            background-color: #FF5722;
-            height: 2.5rem;
-            width: 8rem;
-            font-size: medium;
-            font-weight: 700;
-            color: #EEEEEE;
-            border-radius: 10px;
-            :hover{
-                cursor: pointer;
-                background-color: #ffb39b;
-                 }
-           
+        display: flex;
+        align-items:center;
+       
+        .search{
+            
         }
         a{
             text-decoration: none;
-            margin-left: 8vw;
+            /* margin-left: -15rem; */
             font-size: large;
             font-weight:800 ;
             :hover{
