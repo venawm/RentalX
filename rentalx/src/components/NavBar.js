@@ -10,7 +10,7 @@ const NavBar=()=> {
             <h1><a href="/">RentalX</a></h1>
         </div>
         <div className="links">
-            <a href="#/">Rent</a>
+            <a href="/carslist">Rent</a>
             <a href="#/">About Us</a>
             <a href="/contactus">Contact Us</a>
         </div>
@@ -33,6 +33,7 @@ const Main = styled.div`
     .links{
         display: flex;
         font-weight: 560;
+        justify-content: space-evenly;
         
         a{
             text-decoration: none;

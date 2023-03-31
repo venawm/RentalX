@@ -24,7 +24,7 @@ const Card=({setIsOpen,carData,setModalData})=> {
 }
 const Main = styled.div`
 margin: 0px 15px 0px 15px;
-  margin-top: 5rem;
+  margin-top: 4rem;
   padding: 10px;
   background-color: #F5F5F5;
   width: 20rem;
