@@ -3,19 +3,19 @@ import styled, { keyframes } from 'styled-components';
 import { GoSearch } from 'react-icons/go';
 
 const SearchBox = styled.div`
-  width: 400px;
-  height: 100px;
+  width: 100px;
+  height: 50px;
   position: relative;
   background:transparent;
 `;
 
 const Input = styled.input`
   position: absolute;
-  top: 20px;
-  right: 50px;
-  box-sizing: border-box;
-  width: 0px;
-  height: 63px;
+  top: 13px;
+    right: 47px;
+    box-sizing: border-box;
+    width: 0px;
+    height: 35px;
   padding: 0 20px;
   outline: none;
   font-size: 18px;
@@ -31,15 +31,15 @@ const Input = styled.input`
   ${({ active }) =>
     active &&
     `
-    width: 350px;
-    right: 100px;
+    width: 30vw;
+    right: 110px;
   `}
 `;
 
 const Button = styled.div`
  position: absolute;
-  width: 80px;
-  height: 80px;
+  width: 50px;
+  height: 50px;
   background: #FF5722;
   border-radius: 50%;
   right: 45px;
@@ -56,7 +56,7 @@ const Button = styled.div`
   .icon{
     background-color: #FF5722;
     color: white !important;
-    font-size:2rem;
+    font-size:1rem;
     transition: all 0.8s ease;
     
   }

@@ -1,6 +1,7 @@
 import React from 'react'
 import 'styled-components';
 import styled from 'styled-components';
+import Search from './SearchBox';
 
 
 const NavBar=()=> {
@@ -13,6 +14,8 @@ const NavBar=()=> {
             <a href="/carslist">Rent</a>
             <a href="#/">About Us</a>
             <a href="/contactus">Contact Us</a>
+            <div class="search"> <Search className="search"/></div>
+            
         </div>
         <button>
             <a href="/login">Login/Signup</a> 
@@ -33,7 +36,12 @@ const Main = styled.div`
     .links{
         display: flex;
         font-weight: 560;
+        align-items:center;
         justify-content: space-evenly;
+        .search{
+            margin-left:0rem;
+            
+        }
         
         a{
             text-decoration: none;

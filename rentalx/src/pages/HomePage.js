@@ -3,7 +3,6 @@ import 'styled-components';
 import styled from 'styled-components';
 import Car from '../assests/car.png'
 import NavBar from '../components/NavBar';
-import Search from '../components/SearchBox';
 const HomePage=()=> {
   return (
     <div className="home">
@@ -18,9 +17,6 @@ const HomePage=()=> {
                 </p>
                 <div className="buttons">
                     <a href="/carslist">See all cars</a>
-                    <div class="search">
-                        <Search/>
-                    </div>
                 </div>
             </div>
             <div className="secondary">
@@ -44,6 +40,7 @@ const Main = styled.div`
         width: 35vw;
        }
        .buttons{
+        text-align:center;
         margin-top: 10vw;
         display: flex;
         align-items:center;

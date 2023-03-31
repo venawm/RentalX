@@ -7,7 +7,6 @@ import { RxCrossCircled } from 'react-icons/rx';
 import {TbEngine,TbCurrencyRupee} from 'react-icons/tb'
 import {BsSpeedometer2,BsFuelPump,BsCalendarDate} from 'react-icons/bs'
 import img from '../assests/ferrari.png'
-import Search from '../components/SearchBox';
 const CarsList = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [modalData, setModalData] = useState({});
@@ -96,7 +95,6 @@ const CarsList = () => {
       <NavBar />
       <Main>
         <p className="heading">Our Vehicle Collections</p>
-        <div className="search"><Search/></div>
         <div className="cards">
           {carsDatas.map((carData)=>{
               return <Card carData={carData} setModalData={setModalData} setIsOpen={setIsOpen} />
@@ -168,11 +166,6 @@ const Main = styled.div`
     flex-wrap: wrap;
     justify-content: start;
   }
-  .search{
-  width: 100%;
-  display: flex;
-  justify-content:flex-end;
-}
 `;
 
 const Modal = styled(animated.div)`
