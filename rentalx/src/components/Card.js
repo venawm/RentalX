@@ -28,7 +28,7 @@ margin: 0px 15px 0px 15px;
   padding: 10px;
   background-color: #F5F5F5;
   width: 20rem;
-  height: 60vh;
+  height: 30rem;
   border-radius: 15px;
   transition: transform .2s;
   box-shadow: rgba(149, 157, 165, 0.5) 0px 8px 24px;
