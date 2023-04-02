@@ -12,7 +12,7 @@ const NavBar=()=> {
         </div>
         <div className="links">
             <a href="/carslist">Rent</a>
-            <a href="#/">About Us</a>
+            <a href="/aboutus">About Us</a>
             <a href="/contactus">Contact Us</a>
             <div class="search"> <Search className="search"/></div>
             

@@ -174,7 +174,8 @@ const Modal = styled(animated.div)`
   left: 50%;
   transform: translate(-50%, -50%);
   width: 65vw;
-  height: 80vh;
+  min-height: 80vh;
+  max-height:100vh;
   background-color: #f5f5f5;
   border-radius: 20px;
   z-index: 2;
