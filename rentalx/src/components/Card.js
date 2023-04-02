@@ -71,7 +71,7 @@ margin: 0px 15px 0px 15px;
     font-size: x-large;
     font-weight: 700;
     color: #EEEEEE;
-    margin-top: 25px;
+    margin-top: 15px;
     border-radius: 15px;
     /* border-radius: 0px 0px 5px 5px; */
     border-radius: 15px;
