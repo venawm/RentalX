@@ -12,16 +12,13 @@ const ContactUs = () => {
       <Heading>Contact Us</Heading>
       <Form>
         <Label>
-          Name:
-          <Input type="text" name="name" />
+          Name: <Input type="text" name="name" />
         </Label>
         <Label>
-          Email:
-          <Input type="email" name="email" />
+          Email: <Input type="email" name="email" />
         </Label>
         <Label>
-          Message:
-          <Textarea name="message"></Textarea>
+          Message: <Textarea name="message"></Textarea>
         </Label>
         <Button type="submit">Submit</Button>
       </Form>
@@ -34,6 +31,10 @@ const ContactUs = () => {
 const Container = styled.div`
   max-width: 400px;
   margin: 0 auto;
+  display: flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
 `;
 
 const Heading = styled.h1`
@@ -49,6 +50,10 @@ const Form = styled.form`
 const Label = styled.label`
   font-weight: bold;
   margin-bottom: 10px;
+  display: flex;
+  flex-direction:column;
+  justify-content:start;
+  align-items:center;
 `;
 
 const Input = styled.input`
@@ -66,17 +71,26 @@ const Textarea = styled.textarea`
 `;
 
 const Button = styled.button`
-  background-color: #008cba;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 20px;
-
-  &:hover {
-    background-color: #006799;
-  }
+        border: none;
+        background-color: #FF5722;
+        height: 2.5rem;
+        width: 15rem;
+        font-size: medium;
+        font-weight: 700;
+       
+        border-radius: 10px;
+        :hover{
+            cursor: pointer;
+            background-color: #ffb39b;
+            a{
+                background-color: #ffb39b;
+                color: #EEEEEE;
+            }
+        }
+        a{
+            background-color: #FF5722;
+            color: #EEEEEE;
+        }
 `;
 
 export default ContactUs;

@@ -11,7 +11,7 @@ const SearchBox = styled.div`
 
 const Input = styled.input`
   position: absolute;
-  top: 13px;
+  top: 10px;
     right: 47px;
     box-sizing: border-box;
     width: 0px;
@@ -43,7 +43,7 @@ const Button = styled.div`
   background: #FF5722;
   border-radius: 50%;
   right: 45px;
-  top: 10px;
+  top: 5px;
   cursor: pointer;
   text-align: center;
   line-height: 80px;
@@ -62,9 +62,9 @@ const Button = styled.div`
   }
 
   &:hover {
-    background-color: #45a05d;
+    background-color: #c72e00;
     .icon{
-    background: #45a05d;
+    background: #c72e00;
     color:white;
     
   }
