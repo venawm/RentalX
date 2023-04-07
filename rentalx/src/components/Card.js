@@ -13,7 +13,7 @@ const Card=({setIsOpen,carData,setModalData})=> {
     <Main>
         <img src = {img} alt="" />
         <div className="text">
-          <span className="price">{carData.carName} <span className="days">{carData.year}</span></span>
+          <span className="price">{carData.name} <span className="days">{carData.year}</span></span>
           <span className="price">Rs {carData.price} <span className="days">/Days</span></span>
           <ReactStars className='stars' size={30} edit={false} value={3} ></ReactStars>
           <button onClick={handleOpenModal}>View Details</button>
