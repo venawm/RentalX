@@ -9,7 +9,6 @@ async function carsGetter (req,res){
       }
       // send the response with the fetched data
       res.status(200).json(results.rows);
-      console.log(json(results.rows))
     });
 
 }

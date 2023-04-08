@@ -32,7 +32,7 @@ async function signup(req, res) {
         const client = await pool.connect();
         const query = `
           INSERT INTO users (username, email, password, number, created_at)
-          VALUES ($1, $2, crypt($3, genSalt('bf')), $4, NOW())
+          VALUES ($1, $2, crypt($3, gen_salt('bf')), $4, NOW())
           RETURNING *
         `;
         const values = [username, email, password, number];
@@ -49,5 +49,9 @@ async function signup(req, res) {
     addUser(formData);
   }
 }
+async function login(req, res) {
+  res.status(200).json({ message: 'hello' });
+}
 
-module.exports = { signup };
+
+module.exports = { signup,login };

@@ -1,8 +1,6 @@
-import React from 'react'
-import 'styled-components';
+import React from 'react';
 import styled from 'styled-components';
-
-const Login=()=> {
+const Login = () => {
   return (
     <Main>
       <div className="mainform">
@@ -10,11 +8,12 @@ const Login=()=> {
           <p className="heading">Welcome back</p>
           <p className='text'>Please login to your account</p>
         </div>
-        <form action="">
+        <form>
           <p>User name</p>
           <input type="text" />
           <p>Password</p>
           <input type="password" />
+          <button type="submit">Login</button>
         </form>
       </div>
       <div className="logins">
@@ -25,6 +24,8 @@ const Login=()=> {
     </Main>
   )
 }
+
+
 
 const Main = styled.div`
 display: flex;
