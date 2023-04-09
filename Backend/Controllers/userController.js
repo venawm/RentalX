@@ -1,4 +1,5 @@
 const pool = require('../db');
+const bcrypt = require('bcrypt');
 
 async function signup(req, res) {
   const formData = req.body;
@@ -50,7 +51,27 @@ async function signup(req, res) {
   }
 }
 async function login(req, res) {
-  res.status(200).json({ message: 'hello' });
+  try {
+    const { username, password } = req.body;
+
+    const userQuery = await pool.query('SELECT * FROM users WHERE username = $1', [username]);
+    const user = userQuery.rows[0];
+
+    if (!user) {
+      res.status(401).json({ message: 'Invalid username or password' });
+      return;
+    }
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    if (isMatch) {
+      res.status(200).json({ message: 'Login successful',user });
+    } else {
+      res.status(401).json({ message: 'Invalid username or password' });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
 }
 
 

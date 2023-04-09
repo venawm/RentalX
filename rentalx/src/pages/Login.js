@@ -1,29 +1,59 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
+import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
+
 const Login = () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      await axios.post('http://localhost:5000/login', {
+        username,
+        password,
+      }).then((data)=>{
+        console.log(data.data.message)
+        if(data.data.message==="Login successful"){
+          Cookies.set('loggedIn', true, { expires: 10 }); // the third parameter { expires: 10 } sets the expiration time in days
+          // console.log(data.data.user)
+          navigate('/');
+        }
+      })
+
+      // handle successful response from backend here
+
+ 
+    } catch (error) {
+      console.log(error);
+      // handle error response from backend here
+    }
+  };
+
   return (
     <Main>
       <div className="mainform">
         <div className="head">
           <p className="heading">Welcome back</p>
-          <p className='text'>Please login to your account</p>
+          <p className="text">Please login to your account</p>
         </div>
-        <form>
+        <form onSubmit={handleSubmit}>
           <p>User name</p>
-          <input type="text" />
+          <input type="text" value={username} onChange={(event) => setUsername(event.target.value)} />
           <p>Password</p>
-          <input type="password" />
+          <input type="password" value={password} onChange={(event) => setPassword(event.target.value)} />
           <button type="submit">Login</button>
         </form>
       </div>
-      <div className="logins">
-        <button className='button'>Login</button>
-        <a href="/#">Forgot Password</a>
-        <a href="/#">Admin ?</a>
-      </div>
+      
     </Main>
-  )
-}
+  );
+};
+
 
 
 
@@ -59,12 +89,7 @@ justify-content: center;
         outline: none;
     }
   }
-  .logins{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    button{
+  button{
         border: none;
         background-color: #FF5722;
         height: 3rem;
@@ -79,6 +104,13 @@ justify-content: center;
             background-color: #ffb39b;          
         }
     }
+  
+  .logins{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+   
     a{
         text-decoration: none;
         margin-top:10px;
