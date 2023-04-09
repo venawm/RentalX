@@ -2,9 +2,11 @@ import React from 'react'
 import 'styled-components';
 import styled from 'styled-components';
 import Search from './SearchBox';
-
+import Cookies from 'js-cookie';
+import { CgProfile } from 'react-icons/cg';
 
 const NavBar=()=> {
+    const loginStatus = Cookies.get('loggedIn');
   return (
     <Main>
         <div className="logo">
@@ -17,9 +19,11 @@ const NavBar=()=> {
             <div class="search"> <Search className="search"/></div>
             
         </div>
-        <button>
+        {loginStatus && <button className='profile'> <CgProfile className='icon'/></button> }
+          {!loginStatus && <button>
             <a href="/login">Login/Signup</a> 
-        </button>
+        </button>}
+        
     </Main>
   )
 }
@@ -46,6 +50,25 @@ const Main = styled.div`
         a{
             text-decoration: none;
             margin-right: 5rem;
+        }
+    }
+    .profile{
+        border-radius: 1000px;
+        height: 50px;
+        width: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #FF5722;
+            :hover{
+            .icon{
+                background-color: #ffb39b;
+            }
+
+        }
+        .icon{
+            font-size: xx-large;
+            background-color: #FF5722;
         }
     }
     button{
