@@ -19,14 +19,10 @@ const Login = () => {
       }).then((data)=>{
         console.log(data.data.message)
         if(data.data.message==="Login successful"){
-          Cookies.set('loggedIn', true, { expires: 10 }); // the third parameter { expires: 10 } sets the expiration time in days
-          // console.log(data.data.user)
+          Cookies.set('loggedIn', true, { expires: 10 }); 
           navigate('/');
         }
       })
-
-      // handle successful response from backend here
-
  
     } catch (error) {
       console.log(error);
@@ -47,6 +43,7 @@ const Login = () => {
           <p>Password</p>
           <input type="password" value={password} onChange={(event) => setPassword(event.target.value)} />
           <button type="submit">Login</button>
+          <a href="Admin">Admin</a>
         </form>
       </div>
       
@@ -74,6 +71,8 @@ justify-content: center;
   }
  
   form{
+    display: flex;
+    flex-direction: column;
     p{
       color: rgba(48, 56, 65, 0.5);
     }

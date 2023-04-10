@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-
-// Define component using arrow function
-const Signup = () => {
+const Signup = ({setLogin}) => {
   // Use destructuring to define formData state and setFormData function
   const [formData, setFormData] = useState({
     email: '',
@@ -25,8 +23,13 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/signup', formData);
-      console.log(response.data);
+await axios.post('http://localhost:5000/signup', formData).then((data)=>{
+        if(data.data.message==="User created successfully"){
+          
+          setLogin(true)
+        }
+      })
+ 
     } catch (error) {
       console.error(error);
     }

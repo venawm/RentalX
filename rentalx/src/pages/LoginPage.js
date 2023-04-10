@@ -21,7 +21,7 @@ const LoginPage=()=> {
         </div>
         <div className="component">
           {login && <Login/>}
-          {!login && <Signup/>}
+          {!login && <Signup setLogin={setLogin}/>}
         </div>
       </div>
     </Logins>

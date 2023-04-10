@@ -1,9 +1,10 @@
-import React,{useState} from 'react'
+import React from 'react'
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import CarsList from './pages/CarsList';
 import ContactUs from './pages/ContactUs';
 import AboutUs from './pages/AboutUs';
+import Dashboard from './pages/Admin/Dashboard';
 import { Routes, Route } from "react-router-dom"
 
 
@@ -17,6 +18,7 @@ function App() {
           <Route path="/carslist" element={ <CarsList/> } />
           <Route path="/contactus" element={ <ContactUs/> } />
           <Route path="/aboutus" element={ <AboutUs/> } />
+          <Route path="/admin" element={ <Dashboard/> } />
         </Routes>
       </div>
     </div>
