@@ -2,6 +2,7 @@ import React,{useState} from 'react';
 import styled from 'styled-components';
 import LineChart from './line';
 import UsersTable from '../../components/Admin/Users';
+import Cars from '../../components/Admin/Cars';
 
 const NavBarContainer = styled.nav`
   display: flex;
@@ -78,9 +79,12 @@ const MainContentContainer = styled.main`
         font-weight: 600;
         font-size: xx-large;
         display: flex;
-        flex-direction: column;
+        text-align: center;
         justify-content: center;
         align-items: center;
+        p{
+          background-color: #FF5722;
+        }
     }
     .users{
         background-color: #00ADB5;
@@ -100,8 +104,8 @@ const NavBar = () => {
   );
 };
 
-const SideBar = () => {
-    const [activeIndex, setActiveIndex] = useState(0);
+const SideBar = ({activeIndex,setActiveIndex}) => {
+
 
     const handleClick = (index) => {
       setActiveIndex(index);
@@ -139,13 +143,14 @@ const SideBar = () => {
     };
 
 const MainContent = () => {
+  const sales = 100;
   return (
     <MainContentContainer>
         <h1>Welcome Admin</h1>
         <div class="boxs">
-            <div className='box sales'>Sales</div>
-            <div className='box users'>Users</div>
-            <div className='box requests'>Requests</div>
+            <div className='box sales'><p>Sales</p><p>{sales}</p></div>
+            <div className='box users'>1000 Users</div>
+            <div className='box requests'>932092 Requests</div>
         </div>
         <LineChart/>
     </MainContentContainer>
@@ -153,16 +158,20 @@ const MainContent = () => {
 };
 
 function AdminDashboard() {
+  const [activeIndex, setActiveIndex] = useState(0);
+
   return (
     <div>
       <NavBar />
       <div style={{ display: 'flex' }}>
-        <SideBar />
-        <MainContent />
-        {/* <UsersTable/> */}
+        <SideBar setActiveIndex={setActiveIndex} activeIndex={activeIndex} />
+        { activeIndex === 0 && <MainContent /> }
+        { activeIndex === 1 && <UsersTable /> }
+        { activeIndex === 2 && <Cars /> }
       </div>
     </div>
   );
 }
+
 
 export default AdminDashboard;

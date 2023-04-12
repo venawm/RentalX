@@ -117,6 +117,7 @@ const Main = styled.div`
 `;
 
 const Modal = styled(animated.div)`
+
   position: absolute;
   top: 50%;
   left: 50%;
@@ -128,7 +129,7 @@ const Modal = styled(animated.div)`
   border-radius: 20px;
   z-index: 2;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  padding: 1.5rem;
+  padding: 1.4rem;
   .button {
     position: absolute;
     top: 1rem;
@@ -180,16 +181,18 @@ const Modal = styled(animated.div)`
     .dis{
       display:flex;
       flex-direction:column;
+      justify-content: center;
+      align-items: center;
       background-color: #f5f5f5;
       .description{
       background-color: #f5f5f5;
-      margin-top:10px;
+      margin-top:20px;
       max-height:200px;
     }
     button{
         border: none;
-        margin-top:50px;
-        margin-left:25%;
+        margin-top:30px;
+
         background-color: #FF5722;
         height: 4rem;
         width: 30vw;

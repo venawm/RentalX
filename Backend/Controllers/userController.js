@@ -73,6 +73,17 @@ async function login(req, res) {
     res.status(500).json({ message: 'Internal server error' });
   }
 }
+async function users(req,res){
+
+    try {
+      const result = await pool.query('SELECT username, email, number FROM users GROUP BY username, email,number');
+      const data = result.rows;
+      res.json({ success: true, data });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ success: false, message: 'Internal server error' });
+    }
+}
 
 
-module.exports = { signup,login };
+module.exports = { signup,login,users };
