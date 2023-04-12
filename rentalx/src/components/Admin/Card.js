@@ -2,12 +2,8 @@ import React from 'react'
 import 'styled-components';
 import styled from 'styled-components';
 import img from '../../assests/img.jpg'
-import ReactStars from 'react-stars'
+
 const Card=({setIsOpen,carData,setModalData})=> {
-  const handleOpenModal = () => {
-    setModalData(carData)
-    setIsOpen(true);
-  };
 
   return (
     <Main>

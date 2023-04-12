@@ -17,10 +17,15 @@ const Login = () => {
         username,
         password,
       }).then((data)=>{
-        console.log(data.data.message)
+        console.log(data.data)
         if(data.data.message==="Login successful"){
-          Cookies.set('loggedIn', true, { expires: 10 }); 
-          navigate('/');
+          const userId = data.data.user.user_id
+          const token = data.data.token
+          Cookies.set('token', token, { expires: 7 });
+          Cookies.set('user', userId, { expires: 7 });
+          
+
+         navigate('/')
         }
       })
  

@@ -3,13 +3,19 @@ import 'styled-components';
 import styled from 'styled-components';
 import Search from './SearchBox';
 import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
 import { CgProfile } from 'react-icons/cg';
 
 const NavBar = () => {
   const [showMenu, setShowMenu] = useState(false);
-  const loginStatus = Cookies.get('loggedIn');
+  const loginStatus = Cookies.get('user');
   const menuRef = useRef(null);
+  const navigate = useNavigate()
 
+  const logout=()=>{
+    Cookies.remove('token');
+    Cookies.remove('user');
+  }
   useEffect(() => {
     const handleOutsideClick = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -37,20 +43,22 @@ const NavBar = () => {
       </div>
       {loginStatus && (
         <div className="profile">
-          <button onClick={() => setShowMenu(!showMenu)}>
+          <button className='button' onClick={() => setShowMenu(!showMenu)}>
             <CgProfile className='icon' />
           </button>
           {showMenu && (
             <div ref={menuRef} className="menu">
               <a href="/profile">My Profile</a>
-              <a href="/login">Logout</a>
+              <a href='/' onClick={logout}>Logout</a>
             </div>
           )}
         </div>
       )}
       {!loginStatus && (
-        <button>
-          <a href="/login">Login/Signup</a> 
+        <button onClick={(()=>{
+          navigate('/login')
+        })}>
+          Login/Signup
         </button>
       )}
     </Main>
@@ -58,6 +66,21 @@ const NavBar = () => {
 }
 
 const Main = styled.div`
+  button{
+        border: none;
+        background-color: #FF5722;
+        height: 3rem;
+        width: 10vw;
+        font-size: medium;
+        font-weight: 700;
+        color: #EEEEEE;
+       
+        border-radius: 10px;
+        :hover{
+            cursor: pointer;
+            background-color: #ffb39b;          
+        }
+    }
   a {
     text-decoration: none;
   }
@@ -81,7 +104,7 @@ const Main = styled.div`
   }
   .profile {
     position: relative;
-    button {
+    .button {
       border: none;
       background-color: #FF5722;
       height: 50px;

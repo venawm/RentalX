@@ -1,12 +1,28 @@
-import React from 'react'
+import React,{useEffect} from 'react'
+import axios from 'axios';
 import 'styled-components';
 import styled from 'styled-components';
 import Car from '../assests/car.png'
 import NavBar from '../components/NavBar';
+import Cookies from 'js-cookie';
 const HomePage=()=> {
+    const token = Cookies.get('token');
+    console.log(token)
+
+    useEffect(() => {
+        axios.post('http://localhost:5000/verify', {}, {
+          headers: {
+            token: `${token}`
+          }
+        })
+        .then(response => console.log(response))
+        .catch(error => console.error(error));
+      }, []);
+      
+
   return (
     <div className="home">
-        <NavBar></NavBar>
+       <NavBar/>
         <Main>
             <div className="main">
                 <h1>Search and find your  </h1>

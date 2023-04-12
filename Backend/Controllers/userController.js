@@ -1,5 +1,7 @@
 const pool = require('../db');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const secretKey = 'mysecretkey';
 
 async function signup(req, res) {
   const formData = req.body;
@@ -64,7 +66,8 @@ async function login(req, res) {
     const isMatch = await bcrypt.compare(password, user.password);
 
     if (isMatch) {
-      res.status(200).json({ message: 'Login successful',user });
+      const token = jwt.sign({ id: user.id }, secretKey, { expiresIn: '1h' }); // generate a JWT token with user id
+      res.status(200).json({ message: 'Login successful', token,user });
     } else {
       res.status(401).json({ message: 'Invalid username or password' });
     }
