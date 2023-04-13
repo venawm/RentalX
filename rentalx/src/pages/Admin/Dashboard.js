@@ -2,6 +2,7 @@ import React,{useState} from 'react';
 import styled from 'styled-components';
 import LineChart from './line';
 import UsersTable from '../../components/Admin/Users';
+import Requests from '../../components/Admin/Requests';
 import Cars from '../../components/Admin/Cars';
 
 const NavBarContainer = styled.nav`
@@ -168,6 +169,7 @@ function AdminDashboard() {
         { activeIndex === 0 && <MainContent /> }
         { activeIndex === 1 && <UsersTable /> }
         { activeIndex === 2 && <Cars /> }
+        { activeIndex === 3 && <Requests /> }
       </div>
     </div>
   );
