@@ -8,6 +8,7 @@ router.get('/cars',carController.carsGetter)
 router.post('/signup',userController.signup)
 router.post('/login',userController.login)
 router.get('/users',userController.users)
+router.post('/addcars',carController.addCar)
 router.post('/verify',verifyToken,(req,res)=>{
     try {
         

@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 import { Image } from 'cloudinary-react';
 
 const Container = styled.div`
@@ -47,8 +48,13 @@ function CarForm() {
   });
 
   const handleSubmit = (event) => {
+    
     event.preventDefault();
-    console.log(carData);
+    // Check if required fields have a value
+    if (!carData.carName || !carData.year || !carData.mileage || !carData.engine || !carData.description || !carData.topSpeed) {
+      alert('Please fill in all required fields');
+      return;
+    }
     // Upload the image to Cloudinary
     const formData = new FormData();
     formData.append('file', carData.image);
@@ -60,18 +66,21 @@ function CarForm() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
-        // Set the image URL in state
-        setCarData({
-          ...carData,
-          imageUrl: data.secure_url,
-        });
+        console.log(data.url);
+        setCarData((prevState) => ({
+          ...prevState,
+          imageUrl: data.url,
+        }));
       })
       .catch((error) => {
         console.error(error);
       });
-  };
+      axios.post('http://localhost:5000/addcars',carData)
+      
+  
 
+  };
+  
   const handleChange = (event) => {
     if (event.target.name === 'image') {
       setCarData({
@@ -85,30 +94,34 @@ function CarForm() {
       });
     }
   };
+//   useEffect(() => {
+//     console.log(carData)
+//     // Any code that needs to execute after imageUrl is set should go here
+//   }, [carData]);
 
   return (
     <Container>
       <form onSubmit={handleSubmit}>
         <Label htmlFor="carName">Car Name:</Label>
-        <Input type="text" id="carName" name="carName" value={carData.carName} onChange={handleChange} />
+        <Input type="text" id="carName" name="carName"  value={carData.carName} onChange={handleChange} required/>
 
         <Label htmlFor="year">Year:</Label>
-        <Input type="text" id="year" name="year" value={carData.year} onChange={handleChange} />
+        <Input type="text" id="year" name="year" value={carData.year} onChange={handleChange} required />
 
         <Label htmlFor="mileage">Mileage:</Label>
-        <Input type="text" id="mileage" name="mileage" value={carData.mileage} onChange={handleChange} />
+        <Input type="text" id="mileage" name="mileage" value={carData.mileage} onChange={handleChange} required />
 
         <Label htmlFor="engine">Engine:</Label>
-        <Input type="text" id="engine" name="engine" value={carData.engine} onChange={handleChange} />
+        <Input type="text" id="engine" name="engine" value={carData.engine} onChange={handleChange} required />
 
         <Label htmlFor="description">Description:</Label>
-        <Input type="text" id="description" name="description" value={carData.description} onChange={handleChange} />
+        <Input type="text" id="description" name="description" value={carData.description} onChange={handleChange} required />
 
         <Label htmlFor="topSpeed">Top Speed:</Label>
-        <Input type="text" id="topSpeed" name="topSpeed" value={carData.topSpeed} onChange={handleChange} />
+        <Input type="text" id="topSpeed" name="topSpeed" value={carData.topSpeed} onChange={handleChange} required />
 
         <Label htmlFor="image">Image:</Label>
-        <Input type="file" id="image" name="image" onChange={handleChange} />
+        <Input type="file" id="image" name="image" onChange={handleChange} required />
 
         <Button type="submit">Submit</Button>
       </form>
