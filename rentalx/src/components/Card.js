@@ -11,7 +11,7 @@ const Card=({setIsOpen,carData,setModalData})=> {
 
   return (
     <Main>
-        <img src = {img} alt="" />
+        <img src = {carData.url} alt="" />
         <div className="text">
           <span className="price">{carData.name} <span className="days">{carData.year}</span></span>
           <span className="price">Rs {carData.price} <span className="days">/Days</span></span>

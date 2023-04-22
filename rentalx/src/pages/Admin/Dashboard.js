@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import styled from 'styled-components';
 import LineChart from './line';
 import UsersTable from '../../components/Admin/Users';
-import Requests from '../../components/Admin/Requests';
+import Requests from '../../components/Admin/AddCars';
 import Cars from '../../components/Admin/Cars';
 
 const NavBarContainer = styled.nav`

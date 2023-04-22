@@ -23,7 +23,7 @@ async function addCar (req,res){
       carData.carName,
       carData.year,
       carData.engine,
-      0, // Setting the initial price as 0
+      carData.price, // Setting the initial price as 0
       carData.description,
       carData.mileage,
       carData.topSpeed,

@@ -7,6 +7,10 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  .form{
+    display: felx;
+    flex-direction: row;
+  }
 `;
 
 const Input = styled.input`
@@ -37,6 +41,7 @@ const Button = styled.button`
 
 function CarForm() {
   const [carData, setCarData] = useState({
+    price:'',
     carName: '',
     year: '',
     mileage: '',
@@ -71,11 +76,13 @@ function CarForm() {
           ...prevState,
           imageUrl: data.url,
         }));
+      }).then(()=>{
+        axios.post('http://localhost:5000/addcars',carData)
       })
       .catch((error) => {
         console.error(error);
       });
-      axios.post('http://localhost:5000/addcars',carData)
+
       
   
 
@@ -94,14 +101,14 @@ function CarForm() {
       });
     }
   };
-//   useEffect(() => {
-//     console.log(carData)
-//     // Any code that needs to execute after imageUrl is set should go here
-//   }, [carData]);
+  useEffect(() => {
+    console.log(carData)
+    // Any code that needs to execute after imageUrl is set should go here
+  }, [carData]);
 
   return (
     <Container>
-      <form onSubmit={handleSubmit}>
+      <form className='form' onSubmit={handleSubmit}>
         <Label htmlFor="carName">Car Name:</Label>
         <Input type="text" id="carName" name="carName"  value={carData.carName} onChange={handleChange} required/>
 
@@ -119,6 +126,9 @@ function CarForm() {
 
         <Label htmlFor="topSpeed">Top Speed:</Label>
         <Input type="text" id="topSpeed" name="topSpeed" value={carData.topSpeed} onChange={handleChange} required />
+
+        <Label htmlFor="price">Price:</Label>
+        <Input type="text" id="price" name="price" value={carData.price} onChange={handleChange} required />
 
         <Label htmlFor="image">Image:</Label>
         <Input type="file" id="image" name="image" onChange={handleChange} required />
