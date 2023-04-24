@@ -41,7 +41,6 @@ const Button = styled.button`
 
 function CarForm() {
   const [carData, setCarData] = useState({
-    price:'',
     carName: '',
     year: '',
     mileage: '',
@@ -51,9 +50,20 @@ function CarForm() {
     image: null,
     imageUrl: '',
   });
-
+  
+  useEffect(() => {
+    if (carData.imageUrl) {
+      axios.post('http://localhost:5000/addcars', carData)
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  }, [carData.imageUrl]);
+  
   const handleSubmit = (event) => {
-    
     event.preventDefault();
     // Check if required fields have a value
     if (!carData.carName || !carData.year || !carData.mileage || !carData.engine || !carData.description || !carData.topSpeed) {
@@ -76,16 +86,10 @@ function CarForm() {
           ...prevState,
           imageUrl: data.url,
         }));
-      }).then(()=>{
-        axios.post('http://localhost:5000/addcars',carData)
       })
       .catch((error) => {
         console.error(error);
       });
-
-      
-  
-
   };
   
   const handleChange = (event) => {
@@ -101,10 +105,10 @@ function CarForm() {
       });
     }
   };
-  useEffect(() => {
-    console.log(carData)
-    // Any code that needs to execute after imageUrl is set should go here
-  }, [carData]);
+  
+  
+
+
 
   return (
     <Container>

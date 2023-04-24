@@ -6,39 +6,40 @@ import Requests from '../../components/Admin/AddCars';
 import Cars from '../../components/Admin/Cars';
 
 const NavBarContainer = styled.nav`
+
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #303841;
   color: #fff;
   padding: 10px;
-  button{
-        border: none;
-        background-color: #EEEEEE;
-        height: 3rem;
-        width: 10vw;
-        font-size: medium;
-        font-weight: 700;
-        color: #303841;
-       
-        border-radius: 10px;
-        :hover{
-            cursor: pointer;
-            background-color: #ffb39b;          
-        }
-    }
-`;
+  button {
+    border: none;
+    background-color: #eeeeee;
+    height: 3rem;
+    width: 10vw;
+    font-size: medium;
+    font-weight: 700;
+    color: #303841;
 
+    border-radius: 10px;
+    :hover {
+      cursor: pointer;
+      background-color: #ffb39b;
+    }
+  }
+`;
 const NavBrand = styled.h1`
   background-color: #303841;
   color: #EEEEEE;
   margin: 0;
 `;
 
+
 const SideBarContainer = styled.aside`
   background-color: #f8f9fa;
   width: 200px;
-  min-height: 100vh;
+  max-height: 90vh;
   border-right: 1px solid #dee2e6;
   padding: 5px;
   ul{
@@ -65,6 +66,7 @@ const SideBarTitle = styled.h2`
 `;
 
 const MainContentContainer = styled.main`
+overflow: hidden;
   flex: 1;
   padding: 10px;
   .boxs{
@@ -74,8 +76,8 @@ const MainContentContainer = styled.main`
     .box{
         background-color: #FF5722;
         color: #EEEEEE;
-        height: 15rem;
-        width: 20rem;
+        height: 10rem;
+        width: 15rem;
         border-radius: 20px;
         font-weight: 600;
         font-size: xx-large;
@@ -95,6 +97,12 @@ const MainContentContainer = styled.main`
     }
   }
 `;
+const Main = styled.div`
+  width: 100%;
+  display: flex;
+  overflow: scroll;
+  height: 90vh;
+`
 
 const NavBar = () => {
   return (
@@ -136,7 +144,13 @@ const SideBar = ({activeIndex,setActiveIndex}) => {
               className={activeIndex === 3 ? 'active' : ''}
               onClick={() => handleClick(3)}
             >
-              Rent Request
+              Add Cars
+            </li>
+            <li
+              className={activeIndex === 4 ? 'active' : ''}
+              onClick={() => handleClick(4)}
+            >
+              Rental Requests
             </li>
           </ul>
         </SideBarContainer>
@@ -165,11 +179,13 @@ function AdminDashboard() {
     <div>
       <NavBar />
       <div style={{ display: 'flex' }}>
-        <SideBar setActiveIndex={setActiveIndex} activeIndex={activeIndex} />
+      <SideBar setActiveIndex={setActiveIndex} activeIndex={activeIndex} />
+      <Main>
         { activeIndex === 0 && <MainContent /> }
         { activeIndex === 1 && <UsersTable /> }
         { activeIndex === 2 && <Cars /> }
         { activeIndex === 3 && <Requests /> }
+      </Main>
       </div>
     </div>
   );
