@@ -8,8 +8,13 @@ import { RxCrossCircled } from 'react-icons/rx';
 import { TbEngine, TbCurrencyRupee } from 'react-icons/tb';
 import { BsSpeedometer2, BsFuelPump, BsCalendarDate } from 'react-icons/bs';
 import img from '../assests/ferrari.png';
+import Date from '../components/Date';
+import Cookies from 'js-cookie';
 
 const CarsList = () => {
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+
   const [isOpen, setIsOpen] = useState(false);
   const [modalData, setModalData] = useState({});
   const [carsDatas, setCarsDatas] = useState([]);
@@ -25,11 +30,29 @@ const CarsList = () => {
       });
   }, []);
   
-  
+
 
   const handleCloseModal = () => {
     setIsOpen(false);
   };
+
+  const rentCar =()=>{
+    const carId = modalData.car_id
+    const userId = Cookies.get('user');
+    if(startDate&&endDate!==null){
+      axios.post('http://localhost:5000/rentcars',{
+        carId,
+        userId,
+        startDate,
+        endDate
+        
+      }) 
+    }
+    else{
+      alert('Enter Startdate and Enddate of your rental period')
+    }
+
+  }
 
   const modalTransition = useTransition(isOpen, {
     from: { opacity: 0, transform: 'translate(-50%, -60%) scale(0.8)' },
@@ -69,7 +92,8 @@ const CarsList = () => {
                 </ul>
                 <div className='dis'>
                   <p className='description'>{modalData.description}</p>
-                  <button>Rent now</button>
+                  <Date startDate={startDate} endDate={endDate} setStartDate={setStartDate} setEndDate={setEndDate} />
+                  <button className='disbutton' onClick={rentCar}>Rent now</button>
                 </div>
                
               </div>
@@ -186,12 +210,12 @@ const Modal = styled(animated.div)`
       background-color: #f5f5f5;
       .description{
       background-color: #f5f5f5;
-      margin-top:20px;
+      margin-top:10px;
       max-height:200px;
     }
-    button{
+    .disbutton{
         border: none;
-        margin-top:30px;
+        margin-top:0px;
 
         background-color: #FF5722;
         height: 4rem;

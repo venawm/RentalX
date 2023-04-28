@@ -1,7 +1,7 @@
 const pool = require('../db')
 
 async function carsGetter (req,res){
-    const query = 'SELECT * FROM cars';
+  const query = 'SELECT * FROM cars WHERE is_rented = false';
     // use the pool to query the database
     await pool.query(query, (error, results) => {
       if (error) {
@@ -42,4 +42,30 @@ async function addCar (req,res){
 
 }
 
-module.exports={carsGetter,addCar};
+async function rentCars (req,res){
+  const data = req.body;
+  const rentalQuery = 'INSERT INTO rentals (car_id, user_id, start_date, end_date) VALUES ($1, $2, $3, $4)';
+  const carUpdateQuery = 'UPDATE cars SET is_rented = true WHERE car_id = $1';
+  console.log(data)
+  
+  const values = [data.carId, data.userId, data.startDate, data.endDate];
+
+  pool.query(rentalQuery, values, (rentalError, rentalResult) => {
+    if (rentalError) {
+      console.error(rentalError);
+      res.status(500).send('Error inserting data into the database');
+    } else {
+      pool.query(carUpdateQuery, [data.carId], (carError, carResult) => {
+        if (carError) {
+          console.error(carError);
+          res.status(500).send('Error updating car data in the database');
+        } else {
+          res.status(200).send('Data inserted and car data updated successfully');
+        }
+      });
+    }
+  });
+}
+
+
+module.exports={carsGetter,addCar,rentCars};

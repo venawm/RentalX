@@ -95,6 +95,7 @@ function CarForm() {
   const handleChange = (event) => {
     if (event.target.name === 'image') {
       setCarData({
+        
         ...carData,
         [event.target.name]: event.target.files[0],
       });
