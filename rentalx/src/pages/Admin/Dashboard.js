@@ -1,4 +1,5 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 import LineChart from './line';
 import UsersTable from '../../components/Admin/Users';
@@ -158,22 +159,42 @@ const SideBar = ({activeIndex,setActiveIndex}) => {
       );
     };
 
-const MainContent = () => {
-  const sales = 100;
-  return (
-    <MainContentContainer>
-        <h1>Welcome Admin</h1>
-        <div class="boxs">
-            <div className='box sales'><p>Sales</p><p>{sales}</p></div>
-            <div className='box users'>1000 Users</div>
-            <div className='box requests'>932092 Requests</div>
-        </div>
-        <LineChart/>
-    </MainContentContainer>
-  );
-};
+    const MainContent = () => {
+      const [dashboardData, setDashboardData] = useState([]);
+    
+      useEffect(() => {
+        axios.get('http://localhost:5000/dashboard')
+          .then((response) => {
+            setDashboardData(response.data);
+            console.log(response.data);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }, []);
+    
+      return (
+        <MainContentContainer>
+          <h1>Welcome Admin</h1>
+          {dashboardData.length > 0 && (
+            <div class="boxs">
+              <div className="box sales">
+                <p>Sales {dashboardData[2].count}</p>
+              </div>
+              <div className="box users">{dashboardData[0].count} Users</div>
+              <div className="box requests">
+                {dashboardData[1].count} Requests
+              </div>
+            </div>
+          )}
+          <LineChart />
+        </MainContentContainer>
+      );
+    };
+    
 
 function AdminDashboard() {
+  
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (

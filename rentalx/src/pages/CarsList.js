@@ -7,7 +7,6 @@ import axios from 'axios';
 import { RxCrossCircled } from 'react-icons/rx';
 import { TbEngine, TbCurrencyRupee } from 'react-icons/tb';
 import { BsSpeedometer2, BsFuelPump, BsCalendarDate } from 'react-icons/bs';
-import img from '../assests/ferrari.png';
 import Date from '../components/Date';
 import Cookies from 'js-cookie';
 

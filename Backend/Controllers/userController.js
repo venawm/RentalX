@@ -88,5 +88,17 @@ async function users(req,res){
     }
 }
 
+async function deleteUser(req,res){
+const nameToDelete = req.body.name;
+console.log(nameToDelete)
 
-module.exports = { signup,login,users };
+pool.query('DELETE FROM users WHERE username = $1', [nameToDelete])
+  .then(() => console.log('Row deleted successfully'))
+  .catch(err => console.error(err))
+
+}
+
+
+
+
+module.exports = { signup,login,users,deleteUser};

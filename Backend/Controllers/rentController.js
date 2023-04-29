@@ -8,4 +8,24 @@ async function rentalGetter(req,res){
     
 }
 
-module.exports={rentalGetter};
+async function dashboard(req,res){
+   pool.query(
+    `SELECT 'users' as table_name, COUNT(*) as count FROM users
+     UNION ALL
+     SELECT 'rentals' as table_name, COUNT(*) as count FROM rentals
+     UNION ALL
+     SELECT 'sales' as table_name, COUNT(*) as count FROM sales`,
+    (err, result) => {
+      if (err) {
+        console.error(err)
+      } else {
+        res.status(200).json(result.rows)
+      }
+    }
+  )
+  
+}
+
+
+
+module.exports={rentalGetter,dashboard};

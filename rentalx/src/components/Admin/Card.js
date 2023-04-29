@@ -1,7 +1,7 @@
 import React from 'react'
 import 'styled-components';
 import styled from 'styled-components';
-import img from '../../assests/img.jpg'
+
 
 const Card=({setIsOpen,carData,setModalData})=> {
 

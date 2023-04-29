@@ -95,8 +95,10 @@ const UsersTable = () => {
 
   const handleDelete = (row) => {
     // delete the user from the server
-    const updatedUsers = users.filter((user) => user.id !== row.original.id);
-    setUsers(updatedUsers);
+    const name = row.values.username;
+    axios.post('http://localhost:5000/deleteuser',{name})
+    
+
   };
 
   const handleSearch = (e) => {
