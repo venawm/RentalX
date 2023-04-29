@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const carController = require('../Controllers/carController')
 const userController = require('../Controllers/userController')
+const rentController = require('../Controllers/rentController')
 const verifyToken =require('../middleware/verifyToken')
 
 router.get('/cars',carController.carsGetter)
@@ -10,6 +11,7 @@ router.post('/login',userController.login)
 router.get('/users',userController.users)
 router.post('/addcars',carController.addCar)
 router.post('/rentcars',carController.rentCars)
+router.get('/requests',rentController.rentalGetter)
 router.post('/verify',verifyToken,(req,res)=>{
     try {
         

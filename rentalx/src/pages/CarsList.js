@@ -80,7 +80,7 @@ const CarsList = () => {
               <RxCrossCircled className="button" onClick={handleCloseModal} />
               <div class="modalContent">
                 <h1>{modalData.name}</h1>
-                <img src={img} alt=""></img>
+                <img src={modalData.url} alt=""></img>
               </div>
               <div class="details">
                 <ul>
@@ -174,7 +174,7 @@ const Modal = styled(animated.div)`
     img{
       
       background-color: transparent;
-      width: 35vw;
+      height: 20rem;
       margin-top: -5rem;
       
     }

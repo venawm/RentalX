@@ -4,6 +4,7 @@ import LineChart from './line';
 import UsersTable from '../../components/Admin/Users';
 import Requests from '../../components/Admin/AddCars';
 import Cars from '../../components/Admin/Cars';
+import RentRequests from '../../components/Admin/RentRequests';
 
 const NavBarContainer = styled.nav`
 
@@ -185,6 +186,8 @@ function AdminDashboard() {
         { activeIndex === 1 && <UsersTable /> }
         { activeIndex === 2 && <Cars /> }
         { activeIndex === 3 && <Requests /> }
+        { activeIndex === 4 && <RentRequests /> }
+
       </Main>
       </div>
     </div>
