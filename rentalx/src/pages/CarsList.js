@@ -46,6 +46,8 @@ const CarsList = () => {
         endDate
         
       }) 
+      handleCloseModal()
+      window.reload()
     }
     else{
       alert('Enter Startdate and Enddate of your rental period')

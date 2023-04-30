@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -56,7 +57,20 @@ const RejectButton = styled.button`
   cursor: pointer;
 `;
 
-const RequestCard = ({ username, carname, start_date, end_date,url }) => {
+const RequestCard = ({ userid,id,username, carname, start_date, end_date,url }) => {
+  const acceptHandler=()=>{
+    axios.post('http://localhost:5000/accept',{
+      userid,
+      id
+    })
+
+  }
+  const rejectHandler=()=>{
+    axios.post('http://localhost:5000/reject',{
+      userid,
+      id
+    })
+  }
   return (
     <CardContainer>
       <img src={url} alt=""></img>
@@ -65,8 +79,8 @@ const RequestCard = ({ username, carname, start_date, end_date,url }) => {
       <CardText>Start Date: {start_date}</CardText>
       <CardText>End Date: {end_date}</CardText>
       <ButtonContainer>
-        <AcceptButton>Accept</AcceptButton>
-        <RejectButton>Reject</RejectButton>
+        <AcceptButton onClick={ acceptHandler}>Accept</AcceptButton>
+        <RejectButton onClick={rejectHandler}>Reject</RejectButton>
       </ButtonContainer>
     </CardContainer>
   );

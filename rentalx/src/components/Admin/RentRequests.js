@@ -21,6 +21,8 @@ const RentRequests = () => {
       {rentData.map((request, index) => (
         <RequestCard
           key={index}
+          userid={request.userid}
+          id={request.id}
           username={request.username}
           carname={request.carname}
           start_date={request.start_date}
