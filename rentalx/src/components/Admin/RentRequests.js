@@ -28,6 +28,7 @@ const RentRequests = () => {
           start_date={request.start_date}
           end_date={request.end_date}
           url={request.url}
+          email = {request.email}
         />
       ))}
     </Main>

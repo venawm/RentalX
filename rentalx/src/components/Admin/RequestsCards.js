@@ -17,12 +17,6 @@ const CardContainer = styled.div`
   }
 `;
 
-const CardTitle = styled.h2`
-  font-size: 20px;
-  margin-bottom: 8px;
-  background-color: #f5f5f5;
-`;
-
 const CardText = styled.p`
   font-size: 16px;
   margin-bottom: 4px;
@@ -57,11 +51,12 @@ const RejectButton = styled.button`
   cursor: pointer;
 `;
 
-const RequestCard = ({ userid,id,username, carname, start_date, end_date,url }) => {
+const RequestCard = ({email, userid,id,username, carname, start_date, end_date,url }) => {
   const acceptHandler=()=>{
     axios.post('http://localhost:5000/accept',{
       userid,
       id
+    }).then((response)=>{
     })
 
   }

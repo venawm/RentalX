@@ -1,7 +1,7 @@
 const pool = require('../db')
 
 async function rentalGetter(req,res){
-  pool.query('SELECT users.username AS username,users.user_id as userid,cars.car_id as id,cars.name AS carname, cars.url as url,rentals.start_date AS start_date,rentals.end_date AS end_date  FROM rentals INNER JOIN cars ON rentals.car_id = cars.car_id INNER JOIN users ON rentals.user_id = users.user_id WHERE rentals.is_accepted = false;', (err, result) => {
+  pool.query('SELECT users.username AS username,users.email as email,users.user_id as userid,cars.car_id as id,cars.name AS carname, cars.url as url,rentals.start_date AS start_date,rentals.end_date AS end_date  FROM rentals INNER JOIN cars ON rentals.car_id = cars.car_id INNER JOIN users ON rentals.user_id = users.user_id WHERE rentals.is_accepted = false;', (err, result) => {
     if (err) throw err;
     res.status(200).json(result.rows);
   })
@@ -45,7 +45,7 @@ async function acceptRent(req,res){
     const saleDate =  new Date();
 
 
-      pool.query('INSERT INTO sales (car_id, user_id, price,sale_date) VALUES ($1, $2, $3,$4)',[carId, userId, prices,saleDate]);
+      pool.query('INSERT INTO sales (car_id, user_id, price,sale_date) VALUES ($1, $2, $3,$4)',[carId, userId, prices,saleDate])
     })
 
     res.status(200).json('success');
@@ -74,7 +74,19 @@ async function rejectRent(req,res){
  
 }
 
+async function deleteCars(req,res){
+  const data = req.body;
+  try{
+  const query = {
+    text: 'Delete FROM cars  WHERE car_id = $1',
+    values: [data.id]
+  };
+    await pool.query(query)
+  res.status(200).json(data)
+}
+catch(err){
+  res.status(501).json('server error')
+}
+}
 
-
-
-module.exports={rentalGetter,dashboard,acceptRent,rejectRent};
+module.exports={rentalGetter,dashboard,acceptRent,rejectRent,deleteCars};

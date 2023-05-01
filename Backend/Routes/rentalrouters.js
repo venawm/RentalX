@@ -21,6 +21,7 @@ router.get('/requests',rentController.rentalGetter)
 router.get('/dashboard',rentController.dashboard)
 router.post('/accept',rentController.acceptRent)
 router.post('/reject',rentController.rejectRent)
+router.post('/delete',rentController.deleteCars)
 router.post('/verify',verifyToken,(req,res)=>{
     try {
         

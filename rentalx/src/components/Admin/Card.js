@@ -1,9 +1,17 @@
 import React from 'react'
+import axios from 'axios'
 import 'styled-components';
 import styled from 'styled-components';
 
 
 const Card=({setIsOpen,carData,setModalData})=> {
+
+  const deleteCars=()=>{
+    const id = carData.car_id
+    axios.post('http://localhost:5000/delete',{id})
+
+
+  }
 
   return (
     <Main>
@@ -13,7 +21,7 @@ const Card=({setIsOpen,carData,setModalData})=> {
           <span className="price">Rs {carData.price} <span className="days">/Days</span></span>
           <div class="button">
             <button>Update</button>
-            <button className='delete'>Delete</button>
+            <button className='delete' onClick={deleteCars}>Delete</button>
           </div>
           
         </div>
