@@ -6,7 +6,7 @@ import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
 import { CgProfile } from 'react-icons/cg';
 
-const NavBar = () => {
+const NavBar = ({searchText,setSearchText}) => {
   const [showMenu, setShowMenu] = useState(false);
   const loginStatus = Cookies.get('user');
   const menuRef = useRef(null);
@@ -39,7 +39,7 @@ const NavBar = () => {
         <a href="/carslist">Rent</a>
         <a href="/aboutus">About Us</a>
         <a href="/contactus">Contact Us</a>
-        <div class="search"> <Search className="search"/></div>
+        <div class="search"> <Search  searchText={searchText} setSearchText={setSearchText} className="search"/></div>
       </div>
       {loginStatus && (
         <div className="profile">

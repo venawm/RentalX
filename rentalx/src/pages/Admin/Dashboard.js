@@ -6,6 +6,7 @@ import UsersTable from '../../components/Admin/Users';
 import Requests from '../../components/Admin/AddCars';
 import Cars from '../../components/Admin/Cars';
 import RentRequests from '../../components/Admin/RentRequests';
+import Sales from '../../components/Admin/Sales';
 
 const NavBarContainer = styled.nav`
 
@@ -154,6 +155,12 @@ const SideBar = ({activeIndex,setActiveIndex}) => {
             >
               Rental Requests
             </li>
+            <li
+              className={activeIndex === 5 ? 'active' : ''}
+              onClick={() => handleClick(5)}
+            >
+              Sales
+            </li>
           </ul>
         </SideBarContainer>
       );
@@ -208,6 +215,7 @@ function AdminDashboard() {
         { activeIndex === 2 && <Cars /> }
         { activeIndex === 3 && <Requests /> }
         { activeIndex === 4 && <RentRequests /> }
+        { activeIndex === 5 && <Sales /> }
 
       </Main>
       </div>

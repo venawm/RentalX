@@ -1,15 +1,31 @@
 const pool = require('../db')
 
 async function carsGetter (req,res){
-  const query = 'SELECT * FROM cars WHERE is_rented = false';
+  console.log(req.query.searchtext)
+  if(req.query.searchtext){
+    const searchTerm = req.query.searchtext;
+    const querys = 'SELECT * FROM cars WHERE is_rented = false AND name LIKE $1';
     // use the pool to query the database
-    await pool.query(query, (error, results) => {
+     pool.query(querys, [`%${searchTerm}%`], (error, results) => {
       if (error) {
         throw error;
       }
       // send the response with the fetched data
       res.status(200).json(results.rows);
     });
+  }
+  else{
+
+  const querys = 'SELECT * FROM cars WHERE is_rented = false';
+    // use the pool to query the database
+    await pool.query(querys, (error, results) => {
+      if (error) {
+        throw error;
+      }
+      // send the response with the fetched data
+      res.status(200).json(results.rows);
+    });
+  }
 
 }
 async function addCar (req,res){

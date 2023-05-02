@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { GoSearch } from 'react-icons/go';
+import { useNavigate } from 'react-router-dom';
 
 const SearchBox = styled.div`
   width: 100px;
@@ -110,7 +111,8 @@ const Indicator = styled.div`
   `}
 `;
 
-const Search = () => {
+const Search = ({searchText,setSearchText}) => {
+  const navigate  = useNavigate()
   const [isActive, setIsActive] = useState(false);
 
   const handleClick = () => {
@@ -123,7 +125,13 @@ const Search = () => {
         type="text"
         placeholder="Search"
         active={isActive}
-        onChange={() => {}}
+        onKeyDownCapture={(event) => {
+          if (event.key === 'Enter') {
+            setSearchText(event.target.value)
+            navigate('/carslist')
+          }
+        }}
+        
       />
       <Indicator active={isActive} />
       <Button onClick={handleClick} animate={isActive}>

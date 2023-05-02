@@ -10,7 +10,7 @@ import { BsSpeedometer2, BsFuelPump, BsCalendarDate } from 'react-icons/bs';
 import Date from '../components/Date';
 import Cookies from 'js-cookie';
 
-const CarsList = ({setSearchText,searchText}) => {
+const SearchPage = () => {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
 
@@ -19,8 +19,7 @@ const CarsList = ({setSearchText,searchText}) => {
   const [carsDatas, setCarsDatas] = useState([]);
 
   useEffect(() => {
-    if(searchText<=0){
-      axios
+    axios
       .get('http://localhost:5000/cars')
       .then((response) => {
         setCarsDatas(response.data);
@@ -28,16 +27,7 @@ const CarsList = ({setSearchText,searchText}) => {
       .catch((error) => {
         console.log(error);
       });
-    }
-    axios
-    .get(`http://localhost:5000/cars?searchtext=${searchText}`)
-    .then((response) => {
-      setCarsDatas(response.data);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-  }, [searchText]);
+  }, []);
   
 
 
@@ -74,7 +64,7 @@ const CarsList = ({setSearchText,searchText}) => {
 
   return (
     <Container>
-      <NavBar  searchText={searchText} setSearchText={setSearchText} />
+      <NavBar />
       <Main>
         <p className="heading">Our Vehicle Collections</p>
         <div className="cards">
@@ -247,4 +237,4 @@ const Modal = styled(animated.div)`
     
 `;
 
-export default CarsList;
+export default SearchPage;

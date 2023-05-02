@@ -8,6 +8,14 @@ async function rentalGetter(req,res){
   
     
 }
+async function salesGetter(req,res){
+  pool.query('SELECT users.username AS username,users.email as email,users.user_id as userid,cars.car_id as id,cars.name AS carname, cars.url as url,rentals.start_date AS start_date,rentals.end_date AS end_date  FROM rentals INNER JOIN cars ON rentals.car_id = cars.car_id INNER JOIN users ON rentals.user_id = users.user_id WHERE rentals.is_accepted = true;', (err, result) => {
+    if (err) throw err;
+    res.status(200).json(result.rows);
+  })
+  
+    
+}
 
 async function dashboard(req,res){
    pool.query(
@@ -89,4 +97,4 @@ catch(err){
 }
 }
 
-module.exports={rentalGetter,dashboard,acceptRent,rejectRent,deleteCars};
+module.exports={rentalGetter,dashboard,acceptRent,rejectRent,deleteCars,salesGetter};
