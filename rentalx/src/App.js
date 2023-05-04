@@ -5,7 +5,7 @@ import CarsList from './pages/CarsList';
 import ContactUs from './pages/ContactUs';
 import AboutUs from './pages/AboutUs';
 import Dashboard from './pages/Admin/Dashboard';
-import Search from './components/SearchBox';
+import Notifications from './pages/Notifications';
 import { Routes, Route } from "react-router-dom"
 
 
@@ -23,6 +23,7 @@ function App() {
           <Route path="/aboutus" element={ <AboutUs/> } />
           <Route path="/admin" element={ <Dashboard/> } />
           <Route path="/search" element={ <CarsList/> } />
+          <Route path="/notification" element={ <Notifications/> } />
         </Routes>
       </div>
     </div>

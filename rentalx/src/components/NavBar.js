@@ -8,6 +8,7 @@ import { CgProfile } from 'react-icons/cg';
 
 const NavBar = ({searchText,setSearchText}) => {
   const [showMenu, setShowMenu] = useState(false);
+  const [showNotif, setShowNotif] = useState(false);
   const loginStatus = Cookies.get('user');
   const menuRef = useRef(null);
   const navigate = useNavigate()
@@ -50,8 +51,15 @@ const NavBar = ({searchText,setSearchText}) => {
             <div ref={menuRef} className="menu">
               <a href="/profile">My Profile</a>
               <a href='/' onClick={logout}>Logout</a>
+              {/* <a href="/notification">Notifications</a> */}
+              <button className='not'> Notifications</button>
             </div>
           )}
+          {/* {showNotif && (
+            <div ref={menuRef} className="menu">
+              <a href="/notification">Notifications</a>
+            </div>
+          )} */}
         </div>
       )}
       {!loginStatus && (
@@ -66,7 +74,7 @@ const NavBar = ({searchText,setSearchText}) => {
 }
 
 const Main = styled.div`
-  button{
+  .button{
         border: none;
         background-color: #FF5722;
         height: 3rem;
@@ -143,6 +151,11 @@ const Main = styled.div`
       :hover {
         background-color: #eeeeee;
       }
+    }
+    .not{
+      background-color: white;
+      border: none;
+      margin-left: 5px;
     }
   }
 
