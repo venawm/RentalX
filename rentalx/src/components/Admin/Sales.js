@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import RequestCard from './RequestsCards'
+import RequestCard2 from './RequestsCards2'
 import axios from 'axios'
 import styled from 'styled-components'
 
@@ -19,7 +19,7 @@ const Sales = () => {
   return (
     <Main>
       {rentData.map((request, index) => (
-        <RequestCard
+        <RequestCard2
           key={index}
           userid={request.userid}
           id={request.id}
