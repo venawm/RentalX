@@ -7,6 +7,7 @@ import Requests from '../../components/Admin/AddCars';
 import Cars from '../../components/Admin/Cars';
 import RentRequests from '../../components/Admin/RentRequests';
 import Sales from '../../components/Admin/Sales';
+import { useNavigate } from 'react-router-dom';
 
 const NavBarContainer = styled.nav`
 
@@ -108,10 +109,15 @@ const Main = styled.div`
 `
 
 const NavBar = () => {
+  const navigate = useNavigate()
+  const logout =()=>{
+    navigate('/login')
+
+  }
   return (
     <NavBarContainer>
       <NavBrand>Admin Dashboard</NavBrand>
-      <button>Logout</button>
+      <button onClick={logout}>Logout</button>
     </NavBarContainer>
   );
 };

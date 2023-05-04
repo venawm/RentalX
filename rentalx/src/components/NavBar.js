@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { CgProfile } from 'react-icons/cg';
 
 const NavBar = ({searchText,setSearchText}) => {
+  console.log(searchText)
   const [showMenu, setShowMenu] = useState(false);
   const [showNotif, setShowNotif] = useState(false);
   const loginStatus = Cookies.get('user');

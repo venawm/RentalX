@@ -10,13 +10,14 @@ import { BsSpeedometer2, BsFuelPump, BsCalendarDate } from 'react-icons/bs';
 import Date from '../components/Date';
 import Cookies from 'js-cookie';
 
-const CarsList = ({setSearchText,searchText}) => {
+const CarsList = ({searchText,setSearchText}) => {
+  
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
-
   const [isOpen, setIsOpen] = useState(false);
   const [modalData, setModalData] = useState({});
   const [carsDatas, setCarsDatas] = useState([]);
+  const [text, setText] = useState('');
 
   useEffect(() => {
     if(searchText<=0){

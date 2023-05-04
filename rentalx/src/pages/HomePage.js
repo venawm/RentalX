@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Car from '../assests/car.png'
 import NavBar from '../components/NavBar';
 import Cookies from 'js-cookie';
-const HomePage=()=> {
+const HomePage=({searchText,setSearchText})=> {
     const token = Cookies.get('token');
     console.log(token)
 
@@ -22,7 +22,7 @@ const HomePage=()=> {
 
   return (
     <div className="home">
-       <NavBar/>
+       <NavBar searchText={searchText} setSearchText={setSearchText}/>
         <Main>
             <div className="main">
                 <h1>Search and find your  </h1>

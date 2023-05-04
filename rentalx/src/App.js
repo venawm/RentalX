@@ -7,16 +7,20 @@ import AboutUs from './pages/AboutUs';
 import Dashboard from './pages/Admin/Dashboard';
 import Notifications from './pages/Notifications';
 import { Routes, Route } from "react-router-dom"
+import NavBar from './components/NavBar';
 
 
 function App() {
-  const[searchText,setSearchText] = useState('')
+  const[searchText,setSearchText] = useState('');
+
   
   return (
     <div>
       <div>
         <Routes>
-          <Route path="/"  element={ <HomePage/> } />
+
+          <Route path="/"  element={ <HomePage searchText={searchText} setSearchText={setSearchText}/> } />
+          <Route path="/"  element={ <NavBar/> } />
           <Route path="/login" element={ <LoginPage/> } />
           <Route path="/carslist" element={ <CarsList searchText={searchText} setSearchText={setSearchText} /> } />
           <Route path="/contactus" element={ <ContactUs/> } />
