@@ -1,38 +1,51 @@
-import React from 'react'
-import styled from 'styled-components'
+import React, { useState, useEffect } from 'react'
+import RequestCard2 from '../components/Admin/RequestsCards2'
 import NavBar from '../components/NavBar'
+import axios from 'axios'
+import styled from 'styled-components'
+import Cookies from 'js-cookie';
+const Sales = () => {
+  const [rentData, setRentData] = useState([])
 
-function Notifications() {
+
+  useEffect(() => {
+    const id = Cookies.get('user');
+    console.log(id)
+    axios.get(`http://localhost:5000/sales?id=${id}`)
+      .then((response) => {
+        setRentData(response.data)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }, [])
+
   return (
-    <div class="container">
-        <NavBar/>
-        <Main>
-            <h1>Notifications</h1>
-            <div class="cont">
+    <div>
+    <NavBar/>
+    <Main>
 
-            </div>
-        </Main>
+      {rentData.map((request, index) => (
+        <RequestCard2
+          key={index}
+          userid={request.userid}
+          id={request.id}
+          username={request.username}
+          carname={request.carname}
+          start_date={request.start_date}
+          end_date={request.end_date}
+          url={request.url}
+          email = {request.email}
+        />
+      ))}
+    </Main>
     </div>
   )
 }
-
 const Main = styled.div`
-    margin-top: 3rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    h1{
-        color: #ff5722;
-        font-size: xx-large;
-        font-weight: 800;
-    }
-    .cont{
-        margin-top: 3rem;
-        height: 3rem;
-        width: 50vw;
-        border: 2px solid black;
-    }
+display: flex;
+justify-content: flex-start;
+flex-wrap: wrap;
 `
 
-export default Notifications
+export default Sales
