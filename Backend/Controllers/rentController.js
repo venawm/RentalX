@@ -10,7 +10,6 @@ async function rentalGetter(req,res){
 }
 async function salesGetter(req,res){
   if(req.query.id){
-    console.log(req.query.id)
     pool.query(`SELECT    users.username AS username,    users.email AS email,    users.user_id AS userid,    cars.car_id AS id,    cars.name AS carname,    cars.url AS url,    rentals.start_date AS start_date,    rentals.end_date AS end_date  FROM    rentals    INNER JOIN cars ON rentals.car_id = cars.car_id    INNER JOIN users ON rentals.user_id = users.user_id  WHERE    rentals.is_accepted = true    AND users.user_id = ${req.query.id} `, (err, result) => {
       if (err) throw err;
       res.status(200).json(result.rows);

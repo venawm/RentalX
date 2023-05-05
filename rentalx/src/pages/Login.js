@@ -23,7 +23,6 @@ const Login = () => {
         username,
         password,
       }).then((data)=>{
-        console.log(data.data)
         if(data.data.message==="Login successful"){
           const userId = data.data.user.user_id
           const token = data.data.token

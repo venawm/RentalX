@@ -55,7 +55,6 @@ function CarForm() {
     if (carData.imageUrl) {
       axios.post('http://localhost:5000/addcars', carData)
         .then((response) => {
-          console.log(response.data);
         })
         .catch((error) => {
           console.error(error);
@@ -81,7 +80,6 @@ function CarForm() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data.url);
         setCarData((prevState) => ({
           ...prevState,
           imageUrl: data.url,

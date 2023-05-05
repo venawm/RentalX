@@ -40,7 +40,6 @@ async function signup(req, res) {
         `;
         const values = [username, email, password, number];
         const result = await client.query(query, values);
-        console.log(result.rows[0]); // print the newly added user
         client.release(); // release the client back to the pool
         res.status(201).json({ message: 'User created successfully' });
       } catch (err) {
@@ -90,8 +89,6 @@ async function users(req,res){
 
 async function deleteUser(req,res){
 const nameToDelete = req.body.name;
-console.log(nameToDelete)
-
 pool.query('DELETE FROM users WHERE username = $1', [nameToDelete])
   .then(() => console.log('Row deleted successfully'))
   .catch(err => console.error(err))

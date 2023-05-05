@@ -7,7 +7,6 @@ import Signup from './Signup';
 
 const LoginPage=()=> {
   const [login,setLogin] = useState(true);
-  console.log(login)
   return (
     <Logins>
       <div className="primary">

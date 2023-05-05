@@ -7,15 +7,13 @@ import NavBar from '../components/NavBar';
 import Cookies from 'js-cookie';
 const HomePage=({searchText,setSearchText})=> {
     const token = Cookies.get('token');
-    console.log(token)
-
     useEffect(() => {
         axios.post('http://localhost:5000/verify', {}, {
           headers: {
             token: `${token}`
           }
         })
-        .then(response => console.log(response))
+        .then()
         .catch(error => console.error(error));
       }, []);
       

@@ -179,7 +179,6 @@ const SideBar = ({activeIndex,setActiveIndex}) => {
         axios.get('http://localhost:5000/dashboard')
           .then((response) => {
             setDashboardData(response.data);
-            console.log(response.data);
           })
           .catch((error) => {
             console.log(error);

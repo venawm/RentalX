@@ -10,7 +10,6 @@ const Sales = () => {
 
   useEffect(() => {
     const id = Cookies.get('user');
-    console.log(id)
     axios.get(`http://localhost:5000/sales?id=${id}`)
       .then((response) => {
         setRentData(response.data)

@@ -1,7 +1,6 @@
 const pool = require('../db')
 
 async function carsGetter (req,res){
-  console.log(req.query.searchtext)
   if(req.query.searchtext){
     const searchTerm = req.query.searchtext;
     const querys = 'SELECT * FROM cars WHERE is_rented = false AND name LIKE $1';
@@ -30,8 +29,6 @@ async function carsGetter (req,res){
 }
 async function addCar (req,res){
   const carData = req.body
-  console.log(carData)
-  
   // Inserting the data into the "cars" table
   pool.query(
     'INSERT INTO cars(name, year, engine, price, description, mileage, top_speed, is_rented, created_at, updated_at, url) VALUES($1, $2, $3, $4, $5, $6, $7, $8, NOW(), NOW(), $9)',
@@ -62,7 +59,6 @@ async function rentCars (req,res){
   const data = req.body;
   const rentalQuery = 'INSERT INTO rentals (car_id, user_id, start_date, end_date) VALUES ($1, $2, $3, $4)';
   const carUpdateQuery = 'UPDATE cars SET is_rented = true WHERE car_id = $1';
-  console.log(data)
   
   const values = [data.carId, data.userId, data.startDate, data.endDate];
 
