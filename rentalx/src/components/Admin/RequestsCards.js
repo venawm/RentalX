@@ -2,6 +2,8 @@ import axios from 'axios';
 import React,{Component} from 'react';
 import styled from 'styled-components';
 
+
+
 const CardContainer = styled.div`
   max-height  :20rem ;
   width: 20rem;
@@ -51,7 +53,7 @@ const RejectButton = styled.button`
   cursor: pointer;
 `;
 
-const RequestCard = ({email, userid,id,username, carname, start_date, end_date,url,setRentData }) => {
+const RequestCard = ({email, userid,id,username, carname, start_date, end_date,url,setRentData,setReject }) => {
   const acceptHandler=()=>{
     axios.post('http://localhost:5000/accept',{
       userid,
@@ -60,6 +62,8 @@ const RequestCard = ({email, userid,id,username, carname, start_date, end_date,u
       axios.get('http://localhost:5000/requests')
       .then((response) => {
         setRentData(response.data)
+        setReject('accept')
+       
       })
       .catch((error) => {
         console.log(error)
@@ -69,6 +73,7 @@ const RequestCard = ({email, userid,id,username, carname, start_date, end_date,u
 
   }
   const rejectHandler=()=>{
+    
     axios.post('http://localhost:5000/reject',{
       userid,
       id
@@ -76,6 +81,7 @@ const RequestCard = ({email, userid,id,username, carname, start_date, end_date,u
       axios.get('http://localhost:5000/requests')
       .then((response) => {
         setRentData(response.data)
+        setReject('reject')
       })
       .catch((error) => {
         console.log(error)

@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import 'styled-components';
 import styled from 'styled-components';
+import { ToastContainer, toast } from 'react-toastify';
 
 
 const Card=({setIsOpen,carData,setModalData,setCarsDatas})=> {
@@ -13,6 +14,16 @@ const Card=({setIsOpen,carData,setModalData,setCarsDatas})=> {
       .get('http://localhost:5000/cars')
       .then((response) => {
         setCarsDatas(response.data);
+        toast('Cars Deleted Sucessfully', {
+          position: "top-right",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          });
       })
       .catch((error) => {
         console.log(error);
@@ -24,6 +35,20 @@ const Card=({setIsOpen,carData,setModalData,setCarsDatas})=> {
 
   return (
     <Main>
+      <ToastContainer
+    position="top-right"
+    autoClose={5000}
+    hideProgressBar={false}
+    newestOnTop={false}
+    closeOnClick
+    rtl={false}
+    pauseOnFocusLoss
+    draggable
+    pauseOnHover
+    theme="light"
+    />
+{/* Same as */}
+<ToastContainer />
         <img src = {carData.url} alt="" />
         <div className="text">
           <span className="price">{carData.name} <span className="days">{carData.year}</span></span>
