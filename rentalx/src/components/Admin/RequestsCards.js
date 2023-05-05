@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React from 'react';
+import React,{Component} from 'react';
 import styled from 'styled-components';
 
 const CardContainer = styled.div`
@@ -51,19 +51,35 @@ const RejectButton = styled.button`
   cursor: pointer;
 `;
 
-const RequestCard = ({email, userid,id,username, carname, start_date, end_date,url }) => {
+const RequestCard = ({email, userid,id,username, carname, start_date, end_date,url,setRentData }) => {
   const acceptHandler=()=>{
     axios.post('http://localhost:5000/accept',{
       userid,
       id
-    }).then((response)=>{
+    }).then(()=>{
+      axios.get('http://localhost:5000/requests')
+      .then((response) => {
+        setRentData(response.data)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
     })
+
 
   }
   const rejectHandler=()=>{
     axios.post('http://localhost:5000/reject',{
       userid,
       id
+    }).then(()=>{
+      axios.get('http://localhost:5000/requests')
+      .then((response) => {
+        setRentData(response.data)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
     })
   }
   return (

@@ -20,6 +20,8 @@ const RentRequests = () => {
     <Main>
       {rentData.map((request, index) => (
         <RequestCard
+        rentData={rentData}
+        setRentData={setRentData}
           key={index}
           userid={request.userid}
           id={request.id}

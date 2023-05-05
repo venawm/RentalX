@@ -5,6 +5,7 @@ import CarsList from './pages/CarsList';
 import ContactUs from './pages/ContactUs';
 import AboutUs from './pages/AboutUs';
 import Dashboard from './pages/Admin/Dashboard';
+import Profile from './pages/Profile';
 import Notifications from './pages/Notifications';
 import { Routes, Route } from "react-router-dom"
 import NavBar from './components/NavBar';
@@ -25,6 +26,7 @@ function App() {
           <Route path="/carslist" element={ <CarsList searchText={searchText} setSearchText={setSearchText} /> } />
           <Route path="/contactus" element={ <ContactUs/> } />
           <Route path="/aboutus" element={ <AboutUs/> } />
+          <Route path="/profile" element={ <Profile/> } />
           <Route path="/admin" element={ <Dashboard/> } />
           <Route path="/search" element={ <CarsList/> } />
           <Route path="/notification" element={ <Notifications/> } />

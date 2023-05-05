@@ -58,7 +58,8 @@ const CarsList = ({searchText,setSearchText}) => {
         
       }) 
       handleCloseModal()
-      window.reload()
+      setTimeout(function() { window.location.reload(); }, 1000);
+      
     }
     else{
       alert('Enter Startdate and Enddate of your rental period')

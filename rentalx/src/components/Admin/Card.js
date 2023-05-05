@@ -4,11 +4,20 @@ import 'styled-components';
 import styled from 'styled-components';
 
 
-const Card=({setIsOpen,carData,setModalData})=> {
+const Card=({setIsOpen,carData,setModalData,setCarsDatas})=> {
 
   const deleteCars=()=>{
     const id = carData.car_id
-    axios.post('http://localhost:5000/delete',{id})
+    axios.post('http://localhost:5000/delete',{id}).then(()=>{
+      axios
+      .get('http://localhost:5000/cars')
+      .then((response) => {
+        setCarsDatas(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    })
 
 
   }
@@ -20,7 +29,6 @@ const Card=({setIsOpen,carData,setModalData})=> {
           <span className="price">{carData.name} <span className="days">{carData.year}</span></span>
           <span className="price">Rs {carData.price} <span className="days">/Days</span></span>
           <div class="button">
-            <button>Update</button>
             <button className='delete' onClick={deleteCars}>Delete</button>
           </div>
           
@@ -70,12 +78,12 @@ const Main = styled.div`
   .button{
     background-color: #F5F5F5;
     display:flex;
-    justify-content: space-between;
+    justify-content: center;
     button{
       border: none;
     background-color: green;
-    height: 40px;
-    width: 45%;
+    height: 60px;
+    width: 100%;
     font-size: small;
     font-weight: 700;
     color: #EEEEEE;

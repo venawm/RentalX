@@ -21,7 +21,7 @@ const Cars = () => {
       <Main>
         <div className="cards">
           {carsDatas.map((carData)=>{
-              return <Card  carData={carData} />
+              return <Card setCarsDatas={setCarsDatas} carData={carData} />
           })}
           
         </div>

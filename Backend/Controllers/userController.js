@@ -76,7 +76,18 @@ async function login(req, res) {
   }
 }
 async function users(req,res){
+  if(req.query.id){
+    try {
+      const result = await pool.query(`SELECT username, email, number FROM users where user_id=${req.query.id} GROUP BY username, email,number`);
+      const data = result.rows;
+      res.json({ success: true, data });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ success: false, message: 'Internal server error' });
+    }
 
+  }
+  else{
     try {
       const result = await pool.query('SELECT username, email, number FROM users GROUP BY username, email,number');
       const data = result.rows;
@@ -85,7 +96,11 @@ async function users(req,res){
       console.error(err);
       res.status(500).json({ success: false, message: 'Internal server error' });
     }
+
+  }
+
 }
+
 
 async function deleteUser(req,res){
 const nameToDelete = req.body.name;

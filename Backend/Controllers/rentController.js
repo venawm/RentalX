@@ -29,7 +29,7 @@ async function dashboard(req,res){
    pool.query(
     `SELECT 'users' as table_name, COUNT(*) as count FROM users
      UNION ALL
-     SELECT 'rentals' as table_name, COUNT(*) as count FROM rentals
+     SELECT 'rentals' as table_name, COUNT(*) as count FROM rentals WHERE rentals.is_accepted = false
      UNION ALL
      SELECT 'sales' as table_name, COUNT(*) as count FROM sales`,
     (err, result) => {
