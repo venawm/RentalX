@@ -90,7 +90,7 @@ async function acceptRent(req,res){
       const send = require('gmail-send')({
         user: 'pandesamir3@gmail.com',
         pass: 'lkohwhfrdbbuwdeb',
-        to:   `res.rows[0].email`,
+        to:   res.rows[0].email,
         subject: 'Invoice for your Car Rental Bill',
       });
       send({
