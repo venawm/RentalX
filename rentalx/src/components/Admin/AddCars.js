@@ -2,6 +2,7 @@ import React, { useState,useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import { Image } from 'cloudinary-react';
+import { toast,ToastContainer } from 'react-toastify';
 
 const Container = styled.div`
   display: flex;
@@ -88,6 +89,17 @@ function CarForm() {
       .catch((error) => {
         console.error(error);
       });
+
+      toast('Car Uploaded sucessfully', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
   };
   
   const handleChange = (event) => {
@@ -104,6 +116,7 @@ function CarForm() {
       });
     }
   };
+
   
   
 
@@ -111,6 +124,20 @@ function CarForm() {
 
   return (
     <Container>
+      <ToastContainer
+position="top-right"
+autoClose={5000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+theme="light"
+/>
+{/* Same as */}
+<ToastContainer />
       <form className='form' onSubmit={handleSubmit}>
         <Label htmlFor="carName">Car Name:</Label>
         <Input type="text" id="carName" name="carName"  value={carData.carName} onChange={handleChange} required/>

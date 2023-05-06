@@ -9,10 +9,12 @@ import { TbEngine, TbCurrencyRupee } from 'react-icons/tb';
 import { BsSpeedometer2, BsFuelPump, BsCalendarDate } from 'react-icons/bs';
 import Date from '../components/Date';
 import Cookies from 'js-cookie';
+import Qr from '../components/Qr';
 
 const CarsList = ({searchText,setSearchText}) => {
   
   const [startDate, setStartDate] = useState(null);
+  const [qr, setQr] = useState(false);
   const [endDate, setEndDate] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const [modalData, setModalData] = useState({});
@@ -58,7 +60,7 @@ const CarsList = ({searchText,setSearchText}) => {
         
       }) 
       handleCloseModal()
-      setTimeout(function() { window.location.reload(); }, 1000);
+      setQr(true)
       
     }
     else{
@@ -86,6 +88,10 @@ const CarsList = ({searchText,setSearchText}) => {
           
         </div>
       </Main>
+      
+      {qr && <div class="qr"> <Qr setQr={setQr} /> </div>}
+      
+      
       {modalTransition((style, item) =>
         item ? (
           <ModalBackdrop>
@@ -120,7 +126,16 @@ const CarsList = ({searchText,setSearchText}) => {
 };
 
 const Container = styled.div`
-  position: relative;
+  /* position: relative; */
+  .qr{
+    width: 40rem;
+    height: 30rem;
+    border: .4px solid gray;
+    position: fixed;
+    top: 20%;
+    left:30%;
+    border-radius: 4%;
+  }
 `;
 
 const ModalBackdrop = styled.div`

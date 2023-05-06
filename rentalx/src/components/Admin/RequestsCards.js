@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 
 const CardContainer = styled.div`
-  max-height  :20rem ;
+  max-height  :22rem ;
   width: 20rem;
   display: flex;
   flex-direction: column;
@@ -53,11 +53,13 @@ const RejectButton = styled.button`
   cursor: pointer;
 `;
 
-const RequestCard = ({email, userid,id,username, carname, start_date, end_date,url,setRentData,setReject }) => {
+const RequestCard = ({price, userid,id,username, carname, start_date, end_date,url,setRentData,setReject }) => {
   const acceptHandler=()=>{
     axios.post('http://localhost:5000/accept',{
       userid,
-      id
+      id,
+      carname,
+      price
     }).then(()=>{
       axios.get('http://localhost:5000/requests')
       .then((response) => {
@@ -93,6 +95,7 @@ const RequestCard = ({email, userid,id,username, carname, start_date, end_date,u
       <img src={url} alt=""></img>
       <CardText>Username: {username}</CardText>
       <CardText>Car Name: {carname}</CardText>
+      <CardText>Price: {price}</CardText>
       <CardText>Start Date: {start_date}</CardText>
       <CardText>End Date: {end_date}</CardText>
       <ButtonContainer>
