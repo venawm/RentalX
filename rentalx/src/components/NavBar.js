@@ -51,7 +51,7 @@ const NavBar = ({searchText,setSearchText}) => {
             <div ref={menuRef} className="menu">
               <a href="/profile">My Profile</a>
               <a href='/' onClick={logout}>Logout</a>
-              <a href="/notification">Notifications</a>
+              <a href="/notification">Rental History</a>
             </div>
           )}
           {showNotif && (
