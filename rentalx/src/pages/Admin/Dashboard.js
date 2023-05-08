@@ -165,7 +165,7 @@ const SideBar = ({activeIndex,setActiveIndex}) => {
               className={activeIndex === 5 ? 'active' : ''}
               onClick={() => handleClick(5)}
             >
-              Sales
+              Sales History
             </li>
           </ul>
         </SideBarContainer>
